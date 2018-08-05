@@ -87,8 +87,8 @@ endfunction
 
 let s:defaultEngines = {
             \ 'google': 'https://encrypted.google.com/search?q=<QUERY>',
-            \ 'baidu': 'http://www.baidu.com/s?wd=<QUERY>',
-            \ 'mdn': 'https://developer.mozilla.org/en-US/search?q=<QUERY>'
+            \ 'github': 'https://github.com/search?q=<QUERY>',
+            \ 'youdao': 'http://www.youdao.com/w/eng/<QUERY>/#keyfrom=dict2.index',
             \}
 
 if !exists('g:webSearchEngines')
@@ -99,11 +99,11 @@ endif
 if !has_key(g:webSearchEngines, 'google')
     let g:webSearchEngines['google'] = s:defaultEngines['google']
 endif
-if !has_key(g:webSearchEngines, 'baidu')
-    let g:webSearchEngines['baidu'] = s:defaultEngines['baidu']
+if !has_key(g:webSearchEngines, 'github')
+    let g:webSearchEngines['github'] = s:defaultEngines['github']
 endif
-if !has_key(g:webSearchEngines, 'mdn')
-    let g:webSearchEngines['mdn'] = s:defaultEngines['mdn']
+if !has_key(g:webSearchEngines, 'youdao')
+    let g:webSearchEngines['youdao'] = s:defaultEngines['youdao']
 endif
 
 if !exists('g:webSearchCurrentEngine')
@@ -154,8 +154,7 @@ command! -nargs=+ WS call s:WebSearchCurrent(<f-args>)
 command! -nargs=? WSEngine call s:CurrentEngine(<f-args>)
 "in visual mode, if has no `<esc>`, the command will be executed
 "as times as the number of selected lines
-vnoremap <leader>ss <esc>:call WebSearchSelected()<CR>
-nnoremap <leader>ss <esc>:call WebSearchUnderCursor()<CR>
+vnoremap <leader>gg <esc>:call WebSearchSelected()<CR>
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
